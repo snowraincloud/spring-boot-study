@@ -1,0 +1,61 @@
+logging:
+  level:
+    org:
+      springframework:
+        data: DEBUG
+        jdbc: DEBUG
+        security: DEBUG
+        web: DEBUG
+    priv:
+      wjh:
+        security:
+          domain:
+            auth:
+              dao: TRACE
+
+  pattern:
+    console: '%clr(%d{yyyy/MM/dd-HH:ss.SSS}){blue} %clr(%-5p) %clr(${PID}){faint} %clr(---){faint}
+              %clr([%8.15t]){cyan} %clr(%-40.40logger{0}){blue} %clr(:){red} %clr(%m){faint}%n'
+
+spring:
+  sql:
+    init:
+      mode: always
+      schema-locations:
+        - classpath:sql/schema.sql
+      data-locations: classpath:sql/data.sql
+  datasource:
+    driver-class-name: org.h2.Driver
+    password: ''
+    url: jdbc:h2:~/test;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;DB_CLOSE_DELAY=-1
+    username: sa
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+          trace: false
+          web-allow-others: false
+  jpa:
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+  config:
+    activate:
+      on-profile: dev
+
+mybatis:
+  mapper-locations:
+    - classpath:dao/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+me:
+  jwt:
+    header: Authorization
+    prefix: "Bearer "
+    secret: ${JWT_SECRET}
+    expire-time: 36000000
+    refresh-secret: ${JWT_REFRESH_SECRET}

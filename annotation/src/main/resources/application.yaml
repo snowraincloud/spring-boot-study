@@ -1,0 +1,19 @@
+customize:
+  name: snow-line
+  author: snow
+  value: ${random.value}
+  zero-to-ten: ${random.int(10)}
+  ten-to-twenty: ${random.int[10,20]}
+
+person:
+  lastname: wjh
+  boss: false
+  birth: 1995/10/04
+  maps: {k1: v1,k2: v2}
+  lists:
+    - list1
+    - list2
+  dog:
+    name: dog
+    age: 2
+  age: 23

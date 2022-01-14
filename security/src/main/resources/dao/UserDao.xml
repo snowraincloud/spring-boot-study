@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="priv.wjh.security.domain.auth.dao.UserDao">
+
+    <sql id="allCol">id, account_non_expired, account_non_locked, credentials_non_expired, email, enabled, mobile, password, username, using_mfa</sql>
+
+    <sql id="tableName">users</sql>
+    
+    <resultMap id="userRoleMap" type="priv.wjh.security.domain.auth.User" autoMapping="true">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <collection property="roles" ofType="priv.wjh.security.domain.auth.Role">
+            <id column="role_id" property="id" jdbcType="INTEGER" />
+            <result column="display_name" property="displayName"/>
+            <result column="role_name" property="roleName"/>
+        </collection>
+    </resultMap>
+    
+    <select id="findByMobile" resultType="priv.wjh.security.domain.auth.User">
+        select <include refid="allCol"/>
+        from <include refid="tableName"/>
+        where mobile = #{mobile}
+    </select>
+    <select id="findRolesByMobile" resultMap="userRoleMap">
+        select u.*, role_id, role_name, display_name
+        from users u
+        left join users_roles ur on u.id = ur.user_id left join roles on ur.role_id = roles.id
+        where mobile = #{mobile}
+    </select>
+
+
+</mapper>
