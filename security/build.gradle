@@ -14,5 +14,8 @@ dependencies {
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
 
     implementation 'org.springframework.boot:spring-boot-starter-aop:2.5.4'
+    // https://mvnrepository.com/artifact/com.github.axet/kaptcha
+    implementation 'com.github.axet:kaptcha:0.0.9'
+
 }
 
