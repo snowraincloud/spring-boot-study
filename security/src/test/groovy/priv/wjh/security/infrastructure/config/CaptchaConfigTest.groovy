@@ -1,4 +1,7 @@
 package priv.wjh.security.infrastructure.config
+
+import priv.wjh.security.infrastructure.config.CaptchaConfig
+
 import javax.imageio.ImageIO
 import spock.lang.Specification
 

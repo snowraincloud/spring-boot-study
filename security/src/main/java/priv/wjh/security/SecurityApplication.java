@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author wangjunhao
  **/
-@MapperScan(basePackages = "priv.wjh.security.domain.auth.dao")
+@MapperScan(basePackages = "priv.wjh.permission.domain.auth.dao")
 @SpringBootApplication
 public class SecurityApplication {
 

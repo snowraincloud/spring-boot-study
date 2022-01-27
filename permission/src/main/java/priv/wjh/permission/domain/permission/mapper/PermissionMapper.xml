@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="priv.wjh.permission.domain.permission.dao.PermissionMapper">
+    <!--    <resultMap id="BaseResultMap" type="com.wanshun.console.model.po.Permission">-->
+    <!--        <id column="id" jdbcType="BIGINT" property="id" />-->
+    <!--        <result column="id" jdbcType="BIGINT" property="id" />-->
+    <!--        <result column="pid" jdbcType="BIGINT" property="pid" />-->
+    <!--        <result column="name" jdbcType="VARCHAR" property="name" />-->
+    <!--        <result column="value" jdbcType="VARCHAR" property="value" />-->
+    <!--        <result column="type" jdbcType="TINYINT" property="type" />-->
+    <!--        <result column="uri" jdbcType="VARCHAR" property="uri" />-->
+    <!--        <result column="status" jdbcType="TINYINT" property="status" />-->
+    <!--        <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />-->
+    <!--    </resultMap>-->
+
+    <sql id="Base_Column_List">
+        id, pid, name, value, type, uri, status, create_time
+    </sql>
+
+    <select id="selectAll" resultType="priv.wjh.permission.domain.permission.po.Permission">
+        select
+        <include refid="Base_Column_List"/>
+        from permission
+        where status = 1
+        order by id
+    </select>
+
+    <select id="selectPermission" resultType="priv.wjh.permission.domain.permission.po.Permission">
+        select
+        <include refid="Base_Column_List"></include>
+        from permission
+        <where>
+            <trim suffixOverrides="and">
+                <if test="name != null">
+                    name like concat(concat('%',#{name,jdbcType=VARCHAR}),'%') and
+                </if>
+                <if test="value != null">
+                    value like concat(concat('%',#{value,jdbcType=VARCHAR}),'%') and
+                </if>
+                <if test="type != null">
+                    type = #{type,jdbcType=TINYINT} and
+                </if>
+                <if test="uri != null">
+                    uri like concat(concat('%',#{uri,jdbcType=VARCHAR}),'%') and
+                </if>
+                <if test="status != null">
+                    status = #{status,jdbcType=TINYINT} and
+                </if>
+                <if test="createTime != null">
+                    create_time > #{createTime,jdbcType=TIMESTAMP} and
+                </if>
+            </trim>
+        </where>
+    </select>
+
+    <select id="selectByType" resultType="priv.wjh.permission.domain.permission.po.Permission">
+        select
+        <include refid="Base_Column_List"></include>
+        from permission
+        <where>
+            <if test="type != null">
+                type = #{type}
+            </if>
+        </where>
+    </select>
+    <select id="selectByIds" resultType="priv.wjh.permission.domain.permission.po.Permission">
+        select id, pid
+        from permission p
+        where id in
+        <foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+    <select id="selectEnableByRoles" resultType="priv.wjh.permission.domain.permission.po.Permission">
+        select p.*
+        from role_permission_relation rpr left join permission p on rpr.permission_id = p.id
+        where  rpr.role_id in
+        <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+            #{item.id}
+        </foreach>
+        and p.status = 1
+    </select>
+
+    <insert id="insertPermission" parameterType="com.wanshun.console.orgservice.ao.PermissionRequestAo">
+        insert into permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="value != null">
+                value,
+            </if>
+            <if test="uri != null">
+                uri,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="pid != null">
+                #{pid,jdbcType=BIGINT},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="value != null">
+                #{value,jdbcType=VARCHAR},
+            </if>
+            <if test="uri != null">
+                #{uri,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateStatus">
+        update permission set status = #{status,jdbcType=TINYINT} where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updatePermission">
+        update permission set name = #{name} ,value = #{value},pid = #{pid}
+        ,type = #{type},uri = #{uri},status = #{status} where id = #{id}
+    </update>
+    <update id="updateStatusByPid">
+        update permission set status = #{status,jdbcType=TINYINT} where pid = #{id}
+    </update>
+
+</mapper>

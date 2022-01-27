@@ -3,6 +3,7 @@ package priv.wjh.security.domain.auth.service
 import org.springframework.security.crypto.password.PasswordEncoder
 import priv.wjh.security.domain.auth.User
 import priv.wjh.security.domain.auth.dao.UserDao
+import priv.wjh.security.domain.auth.service.AuthService
 import priv.wjh.security.infrastructure.jwt.JwtService
 import spock.lang.Specification
 

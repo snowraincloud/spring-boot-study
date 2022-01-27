@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="priv.wjh.permission.domain.permission.dao.RoleMapper" >
+
+<!--    <resultMap id="BaseResultMap" type="com.wanshun.console.model.po.Role">-->
+<!--        <id column="id" jdbcType="BIGINT" property="id" />-->
+<!--        <result column="id" jdbcType="BIGINT" property="id" />-->
+<!--        <result column="name" jdbcType="VARCHAR" property="name" />-->
+<!--        <result column="description" jdbcType="VARCHAR" property="description" />-->
+<!--        <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />-->
+<!--        <result column="status" jdbcType="TINYINT" property="status" />-->
+<!--    </resultMap>-->
+
+    <sql id="Base_Column_List">
+        id, name, description, create_time, status
+    </sql>
+
+    <select id="selectAll" resultType="priv.wjh.permission.domain.permission.po.Role">
+        select
+        id, name
+        from role
+        where status = 1
+    </select>
+
+    <select id="selectRole" parameterType="com.wanshun.console.orgservice.ao.UserRequestAo" resultType="priv.wjh.permission.domain.permission.po.Role">
+        select
+        <include refid="Base_Column_List" />
+        from role
+        <where>
+            <trim suffixOverrides="and">
+                <if test="name != null">
+                    name like concat(concat('%', #{name,jdbcType=VARCHAR}),'%') and
+                </if>
+                <if test="createTime != null">
+                    create_time > #{createTime} and
+                </if>
+                <if test="status != null">
+                    status = #{status,jdbcType=TINYINT} and
+                </if>
+            </trim>
+        </where>
+
+    </select>
+
+    <insert id="insertRole" parameterType="priv.wjh.permission.domain.permission.po.Role" keyProperty="id" useGeneratedKeys="true">
+        insert into role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateStatus" parameterType="com.wanshun.console.orgservice.ao.RoleRequestAo">
+        update role set status = #{status,jdbcType=TINYINT} where id  = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateRole" parameterType="com.wanshun.console.orgservice.ao.RoleRequestAo">
+        update role set name = #{name} ,description = #{description},status = #{status} where id = #{id}
+    </update>
+
+</mapper>
