@@ -22,7 +22,7 @@ public class Rsp<T> {
     private String token;
 
     public static <T> Rsp<T> ok(String message, T data){
-        Rsp<T> rsp = new Rsp<T>();
+        Rsp<T> rsp = new Rsp<>();
         rsp.setCode(1);
         rsp.setMsg(message);
         rsp.setData(data);
@@ -30,16 +30,8 @@ public class Rsp<T> {
         return rsp;
     }
 
-//    public static <T> Rsp<T> ok(String message){
-//        Rsp<T> rsp = new Rsp<T>();
-//        rsp.setCode(1);
-//        rsp.setMsg(message);
-//        rsp.setCreateTime(new Date(System.currentTimeMillis()));
-//        return rsp;
-//    }
-
     public static <T> Rsp<T> ok(T data){
-        Rsp<T> rsp = new Rsp<T>();
+        Rsp<T> rsp = new Rsp<>();
         rsp.setCode(1);
         rsp.setMsg("响应成功");
         rsp.setData(data);
@@ -48,15 +40,16 @@ public class Rsp<T> {
     }
 
     public static <T> Rsp<T> fail(IRspEnum rspEnum){
-        Rsp<T> rsp = new Rsp<T>();
-        rsp.setCode(rspEnum.getCode());
-        rsp.setMsg(rspEnum.getMessage());
-        rsp.setCreateTime(new Date(System.currentTimeMillis()));
-        return rsp;
+        return new Rsp<>(rspEnum.getCode(), rspEnum.getMessage());
     }
 
+    public static <T> Rsp<T> fail(int code, String msg){
+        return new Rsp<>(code, msg);
+    }
+
+
     public static <T> Rsp<T> error(String error){
-        Rsp<T> rsp = new Rsp<T>();
+        Rsp<T> rsp = new Rsp<>();
         rsp.setCode(0);
         rsp.setMsg(error);
         rsp.setCreateTime(new Date(System.currentTimeMillis()));
@@ -64,7 +57,7 @@ public class Rsp<T> {
     }
 
     public static <T> Rsp<T> error(Integer code, String error){
-        Rsp<T> rsp = new Rsp<T>();
+        Rsp<T> rsp = new Rsp<>();
         rsp.setCode(code);
         rsp.setMsg(error);
         rsp.setCreateTime(new Date(System.currentTimeMillis()));
@@ -72,6 +65,12 @@ public class Rsp<T> {
     }
 
     public Rsp() {
+    }
+
+    public Rsp(Integer code, String msg) {
+        this.code = code;
+        this.msg = msg;
+        this.createTime = new Date(System.currentTimeMillis());
     }
 
     public Rsp(String url, Integer code, String msg, T data, Date createTime, String op, String token) {

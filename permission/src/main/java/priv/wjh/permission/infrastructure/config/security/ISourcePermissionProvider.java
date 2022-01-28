@@ -9,6 +9,7 @@ import java.util.Collection;
  * <h1>提供访问资源需要的权限</h1>
  * @author wangjunhao
  */
+@FunctionalInterface
 public interface ISourcePermissionProvider<T extends ConfigAttribute >{
     /**
      * <h1>返回访问资源需要的权限列表</h1>

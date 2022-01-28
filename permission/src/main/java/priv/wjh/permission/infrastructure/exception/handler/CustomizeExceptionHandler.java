@@ -13,10 +13,11 @@ import priv.wjh.permission.infrastructure.rsp.Rsp;
  **/
 @Slf4j
 @RestControllerAdvice
-public class PermissionExceptionHandler {
+public class CustomizeExceptionHandler {
     @ExceptionHandler(PermissionException.class)
     public Rsp handlerPermissionException(PermissionException e){
         log.info("permission exception: ", e);
         return Rsp.fail(e.getRspEnum());
     }
+
 }

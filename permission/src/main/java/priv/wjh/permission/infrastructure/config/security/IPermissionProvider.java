@@ -8,6 +8,7 @@ import java.util.List;
  * <h1>提供用户的权限列表</h1>
  * @author wangjunhao
  */
+@FunctionalInterface
 public interface IPermissionProvider<T extends GrantedAuthority> {
 
     /**
