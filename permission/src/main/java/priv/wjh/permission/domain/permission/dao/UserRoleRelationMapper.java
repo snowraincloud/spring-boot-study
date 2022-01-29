@@ -1,7 +1,7 @@
 package priv.wjh.permission.domain.permission.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import priv.wjh.permission.api.ao.UserRequestAo;
+import priv.wjh.permission.api.ao.UserAo;
 import priv.wjh.permission.domain.permission.po.Permission;
 import priv.wjh.permission.domain.permission.po.Role;
 import priv.wjh.permission.domain.permission.po.UserRoleRelation;
@@ -12,7 +12,7 @@ import java.util.List;
 public interface UserRoleRelationMapper {
     int deleteByUserId(Long id);
 
-    int insertSelective(UserRequestAo userRequestAo);
+    int insertSelective(UserAo userAo);
 
     List<Role> selectByUserId(Long id);
 

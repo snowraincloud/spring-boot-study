@@ -1,4 +1,4 @@
-package priv.wjh.permission.domain.service;
+package priv.wjh.permission.domain.permission.service;
 
 public interface ILogoutUserService {
     void logoutUserByPermissionId(Long id);

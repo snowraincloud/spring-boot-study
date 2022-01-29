@@ -34,7 +34,7 @@ public class JwtToken {
         try{
             userinfo = Jwts.parser().setSigningKey(tokenKey).parseClaimsJws(token).getBody().getSubject();
         } catch (Exception e){
-            log.info("token解析失败, ", e);
+            logger.info("token解析失败, ", e);
             return null;
         }
         return userinfo;

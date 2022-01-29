@@ -4,36 +4,30 @@ package priv.wjh.permission.api.ao;
 import java.util.Date;
 import java.util.List;
 
-public class UserRequestAo {
+public class UserAo {
 
     private Long id;
 
     private String username;
 
+
     private String password;
 
     private String confirmPassword;
 
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date loginTime;
 
     private List<Long> roleId;
 
     private Byte status;
 
-    public void check(){
-//        if(null != username && !Pattern.matches("^[a-zA-Z0-9]+$",username)){
-//            throw new com.wanshun.console.permission.exception.PermissionException(com.wanshun.console.permission.enums.PatternRspEnum.PATTERN);
-//        }
+
+    public UserAo() {
     }
 
-    public UserRequestAo() {
-    }
-
-    public UserRequestAo(Long id, String username, String password, String confirmPassword, Date createTime, Date loginTime, List<Long> roleId, Byte status) {
+    public UserAo(Long id, String username, String password, String confirmPassword, Date createTime, Date loginTime, List<Long> roleId, Byte status) {
         this.id = id;
         this.username = username;
         this.password = password;

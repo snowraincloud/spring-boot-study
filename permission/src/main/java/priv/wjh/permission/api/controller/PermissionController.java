@@ -17,7 +17,7 @@ import priv.wjh.permission.api.ao.BaseSelectAo;
 import priv.wjh.permission.api.ao.PermissionRequestAo;
 import priv.wjh.permission.domain.permission.po.Permission;
 import priv.wjh.permission.domain.permission.po.Role;
-import priv.wjh.permission.domain.service.PermissionService;
+import priv.wjh.permission.domain.permission.service.PermissionService;
 import priv.wjh.permission.infrastructure.rsp.Rsp;
 
 import java.util.List;
@@ -35,7 +35,7 @@ public class PermissionController {
 
     @PostMapping("/selectPermission")
     public Rsp<String> selectPermission(@RequestBody BaseSelectAo ao) throws JsonProcessingException {
-        log.debug("requestData: {}", ao);
+        logger.debug("requestData: {}", ao);
         BaseDataAo<PermissionRequestAo> baseDataAo = objectMapper.readValue(ao.getData(), new TypeReference<BaseDataAo<PermissionRequestAo>>(){});
         PermissionRequestAo permissionRequestAo = baseDataAo.getBody();
         permissionRequestAo.check();
@@ -48,7 +48,7 @@ public class PermissionController {
             }
             return Rsp.ok(objectMapper.writeValueAsString(permissions));
         } catch (JsonProcessingException e) {
-            log.warn("查询用户列表成功,序列化失败", e);
+            logger.warn("查询用户列表成功,序列化失败", e);
         }
         return Rsp.error("查询用户列表成功,序列化失败");
     }

@@ -1,4 +1,4 @@
-package priv.wjh.permission.domain.service;
+package priv.wjh.permission.domain.permission.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import priv.wjh.permission.api.ao.LoginAo;

@@ -1,4 +1,4 @@
-package priv.wjh.permission.domain.service.impl;
+package priv.wjh.permission.domain.permission.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import priv.wjh.permission.domain.permission.dao.UserRoleRelationMapper;
 import priv.wjh.permission.domain.permission.po.Permission;
 import priv.wjh.permission.domain.permission.po.Role;
 import priv.wjh.permission.domain.permission.po.User;
-import priv.wjh.permission.domain.service.IAuthService;
+import priv.wjh.permission.domain.permission.service.IAuthService;
 import priv.wjh.permission.infrastructure.jwt.JwtToken;
 import priv.wjh.permission.infrastructure.utils.CacheUtil;
 
@@ -42,7 +42,7 @@ public class AuthServiceImpl implements IAuthService {
             }
             return false;
         }catch (Exception e){
-            log.info("检验缓存失败", e);
+            logger.info("检验缓存失败", e);
             return false;
         }
     }

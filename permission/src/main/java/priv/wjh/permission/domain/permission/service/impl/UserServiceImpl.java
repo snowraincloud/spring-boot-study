@@ -1,19 +1,19 @@
-package priv.wjh.permission.domain.service.impl;
+package priv.wjh.permission.domain.permission.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
-import priv.wjh.permission.api.ao.UserRequestAo;
+import priv.wjh.permission.api.ao.UserAo;
 import priv.wjh.permission.domain.permission.dao.RoleMapper;
 import priv.wjh.permission.domain.permission.dao.UserMapper;
 import priv.wjh.permission.domain.permission.dao.UserRoleRelationMapper;
 import priv.wjh.permission.domain.permission.po.Role;
 import priv.wjh.permission.domain.permission.po.User;
 import priv.wjh.permission.domain.permission.po.UserRoleRelation;
-import priv.wjh.permission.domain.service.ILogoutUserService;
-import priv.wjh.permission.domain.service.UserService;
+import priv.wjh.permission.domain.permission.service.UserService;
+import priv.wjh.permission.domain.permission.service.ILogoutUserService;
 import priv.wjh.permission.infrastructure.jwt.JwtToken;
 
 import javax.servlet.ServletContext;
@@ -66,15 +66,15 @@ public class UserServiceImpl implements UserService {
 //    }
 
     @Override
-    public List<User> selectUser(UserRequestAo userRequestAo) {
-        return userMapper.selectAll(userRequestAo);
+    public List<User> selectUser(UserAo userAo) {
+        return userMapper.selectAll(userAo);
     }
 
     @Override
-    public Integer setStatus(UserRequestAo userRequestAo) {
-        int j = userMapper.updateStatus(userRequestAo);
-        if (j != 0 && userRequestAo.getStatus() == 0){
-            logoutUserService.logoutByUserId(userRequestAo.getId());
+    public Integer setStatus(UserAo userAo) {
+        int j = userMapper.updateStatus(userAo);
+        if (j != 0 && userAo.getStatus() == 0){
+            logoutUserService.logoutByUserId(userAo.getId());
         }
         return j;
     }
@@ -82,11 +82,11 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<Role> getRoles(UserRequestAo userRequestAo) {
-        if (userRequestAo.getId() == null){
+    public List<Role> getRoles(UserAo userAo) {
+        if (userAo.getId() == null){
             return roleMapper.selectAll();
         }
-        List<Role> roles = userRoleRelationMapper.selectByUserId(userRequestAo.getId());
+        List<Role> roles = userRoleRelationMapper.selectByUserId(userAo.getId());
         return roles;
     }
 
@@ -103,20 +103,20 @@ public class UserServiceImpl implements UserService {
 
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
-    public Integer insertUser(UserRequestAo userRequestAo) {
+    public Integer insertUser(UserAo userAo) {
 //        MD5Encoder.encode()
 //        userRequestAo.setPassword(passwordEncoder.encode(userRequestAo.getPassword()));
-        userRequestAo.setPassword(DigestUtils.md5DigestAsHex(userRequestAo.getPassword().getBytes(StandardCharsets.UTF_8)));
-        int i = userMapper.insertUser(userRequestAo);
+        userAo.setPassword(DigestUtils.md5DigestAsHex(userAo.getPassword().getBytes(StandardCharsets.UTF_8)));
+        int i = userMapper.insertUser(userAo);
         if(0 == i){
             throw new RuntimeException("插入用户失败");
         }
-        List<UserRoleRelation> userRoleRelations = new ArrayList<>(userRequestAo.getRoleId().size());
-        for(Long id : userRequestAo.getRoleId()){
-            userRoleRelations.add(new UserRoleRelation(id, userRequestAo.getId()));
+        List<UserRoleRelation> userRoleRelations = new ArrayList<>(userAo.getRoleId().size());
+        for(Long id : userAo.getRoleId()){
+            userRoleRelations.add(new UserRoleRelation(id, userAo.getId()));
         }
         i = userRoleRelationMapper.insertList(userRoleRelations);
-        if(i != userRequestAo.getRoleId().size()){
+        if(i != userAo.getRoleId().size()){
             throw new RuntimeException("插入用户角色失败");
         }
 
@@ -126,7 +126,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
-    public int update(UserRequestAo ao) {
+    public int update(UserAo ao) {
         if (ao.getId().equals(1L)){
             ao.setStatus((byte) 1);
         }

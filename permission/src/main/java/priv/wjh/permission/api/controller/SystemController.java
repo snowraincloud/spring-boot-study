@@ -13,7 +13,7 @@ import priv.wjh.permission.api.ao.BaseAo;
 import priv.wjh.permission.api.ao.LoginAo;
 import priv.wjh.permission.api.ao.UpdatePasswordAo;
 import priv.wjh.permission.api.vo.MenuVo;
-import priv.wjh.permission.domain.service.ISystemService;
+import priv.wjh.permission.domain.permission.service.ISystemService;
 import priv.wjh.permission.infrastructure.enums.FailRspEnum;
 import priv.wjh.permission.infrastructure.rsp.Rsp;
 

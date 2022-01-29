@@ -1,7 +1,7 @@
 package priv.wjh.permission.domain.permission.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import priv.wjh.permission.api.ao.UserRequestAo;
+import priv.wjh.permission.api.ao.UserAo;
 import priv.wjh.permission.domain.permission.po.User;
 
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    List<User> selectAll(UserRequestAo userRequestAo);
+    List<User> selectAll(UserAo userAo);
 
-    int updateStatus(UserRequestAo userRequestAo);
+    int updateStatus(UserAo userAo);
 
     User selectByUsername(String username);
 
@@ -19,9 +19,9 @@ public interface UserMapper {
 
     int updateLoginTimeByLogin(User user);
 
-    int insertUser(UserRequestAo userRequestAo);
+    int insertUser(UserAo userAo);
 
     int updatePassword(User user);
 
-    int update(UserRequestAo ao);
+    int update(UserAo ao);
 }

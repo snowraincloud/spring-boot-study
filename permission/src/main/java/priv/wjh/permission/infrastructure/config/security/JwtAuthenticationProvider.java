@@ -22,6 +22,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
 
     public JwtAuthenticationProvider(IPermissionProvider<? extends GrantedAuthority> permissionProvider) {
         this.permissionProvider = permissionProvider;
+
     }
 
 

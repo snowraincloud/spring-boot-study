@@ -1,5 +1,6 @@
-package priv.wjh.permission.infrastructure.config.security;
+package priv.wjh.permission.infrastructure.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,6 +18,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import priv.wjh.permission.infrastructure.config.security.JwtAuthenticationProvider;
+import priv.wjh.permission.infrastructure.config.security.JwtFilter;
+import priv.wjh.permission.infrastructure.config.security.MyAccessDecisionManager;
+import priv.wjh.permission.infrastructure.config.security.MyFilterInvocationSecurityMetadataSource;
 import priv.wjh.permission.infrastructure.jwt.JwtService;
 
 /**
@@ -77,9 +82,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
+    @Value("${me.white-list:/**}")
+    private String[] whiteList;
+
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/test", "/error",
+        web.ignoring().antMatchers(whiteList);
+        web.ignoring().antMatchers("/error",
                 "/system/login", "/system/getValidateCode", "/system/logout",
                 "/driver/login/**", "/org/common/**"
         );

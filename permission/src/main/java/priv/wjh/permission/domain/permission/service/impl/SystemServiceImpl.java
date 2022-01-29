@@ -1,4 +1,4 @@
-package priv.wjh.permission.domain.service.impl;
+package priv.wjh.permission.domain.permission.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,8 +15,8 @@ import priv.wjh.permission.domain.permission.dao.UserMapper;
 import priv.wjh.permission.domain.permission.dao.UserRoleRelationMapper;
 import priv.wjh.permission.domain.permission.po.Permission;
 import priv.wjh.permission.domain.permission.po.User;
-import priv.wjh.permission.domain.service.IAuthService;
-import priv.wjh.permission.domain.service.ISystemService;
+import priv.wjh.permission.domain.permission.service.IAuthService;
+import priv.wjh.permission.domain.permission.service.ISystemService;
 import priv.wjh.permission.infrastructure.enums.LoginRspEnum;
 import priv.wjh.permission.infrastructure.enums.UpdatePasswordRspEnum;
 import priv.wjh.permission.infrastructure.exception.PermissionException;

@@ -1,9 +1,13 @@
 package priv.wjh.permission.infrastructure.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import priv.wjh.permission.infrastructure.resolver.MyUnpackResolver;
+
+import java.util.List;
 
 /**
  * @author wangjunhao
@@ -11,6 +15,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
+
+    private final MyUnpackResolver unpackResolver;
+
+    public WebConfig(MyUnpackResolver unpackResolver) {
+        this.unpackResolver = unpackResolver;
+    }
+
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -26,5 +37,11 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 // 跨域允许时间
                 .maxAge(3600);
+    }
+
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(unpackResolver);
     }
 }

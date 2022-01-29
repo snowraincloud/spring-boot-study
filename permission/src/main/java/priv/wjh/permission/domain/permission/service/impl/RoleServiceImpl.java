@@ -1,4 +1,4 @@
-package priv.wjh.permission.domain.service.impl;
+package priv.wjh.permission.domain.permission.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,8 +10,8 @@ import priv.wjh.permission.domain.permission.dao.RolePermissionRelationMapper;
 import priv.wjh.permission.domain.permission.dao.UserRoleRelationMapper;
 import priv.wjh.permission.domain.permission.po.Permission;
 import priv.wjh.permission.domain.permission.po.Role;
-import priv.wjh.permission.domain.service.ILogoutUserService;
-import priv.wjh.permission.domain.service.RoleService;
+import priv.wjh.permission.domain.permission.service.ILogoutUserService;
+import priv.wjh.permission.domain.permission.service.RoleService;
 
 import java.util.ArrayList;
 import java.util.HashSet;

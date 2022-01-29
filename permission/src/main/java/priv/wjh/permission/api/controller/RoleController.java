@@ -17,7 +17,7 @@ import priv.wjh.permission.api.ao.BaseSelectAo;
 import priv.wjh.permission.api.ao.RoleRequestAo;
 import priv.wjh.permission.api.vo.PesVo;
 import priv.wjh.permission.domain.permission.po.Role;
-import priv.wjh.permission.domain.service.RoleService;
+import priv.wjh.permission.domain.permission.service.RoleService;
 import priv.wjh.permission.infrastructure.rsp.Rsp;
 
 import java.util.List;
@@ -35,7 +35,7 @@ public class RoleController {
 
     @PostMapping("/selectRole")
     public Rsp<String> selectRole(@RequestBody BaseSelectAo ao) throws JsonProcessingException {
-        log.debug("requestData: {}", ao);
+        logger.debug("requestData: {}", ao);
         BaseDataAo<RoleRequestAo> baseDataAo = objectMapper.readValue(ao.getData(), new TypeReference<BaseDataAo<RoleRequestAo>>(){});
         RoleRequestAo roleRequestAo = baseDataAo.getBody();
         roleRequestAo.check();
@@ -48,7 +48,7 @@ public class RoleController {
             }
             return Rsp.ok("响应成功", objectMapper.writeValueAsString(roles));
         } catch (JsonProcessingException e) {
-            log.warn("查询用户列表成功,序列化失败", e);
+            logger.warn("查询用户列表成功,序列化失败", e);
         }
         return Rsp.error("查询用户列表成功,序列化失败");
     }

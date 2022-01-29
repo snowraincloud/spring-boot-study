@@ -4,7 +4,6 @@ import spock.lang.Specification
 
 import java.util.concurrent.CountDownLatch
 import java.util.function.Supplier
-
 /**
  * 负载相同, token会重复
  */
@@ -42,6 +41,20 @@ class JwtTokenTest extends Specification {
         500   | 0
     }
 
+
+    def "test"(){
+        given:
+
+        Collection<Integer> list = new HashSet<>()
+        for (int i = 1; i < 100000; i++ ){
+            list.add(i)
+        }
+        def pre = System.currentTimeMillis()
+        for (int i = 1; i < 100000; i++ ){
+            list.contains(i)
+        }
+        println(System.currentTimeMillis() - pre)
+    }
 
 
 

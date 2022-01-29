@@ -1,4 +1,4 @@
-package priv.wjh.permission.domain.service;
+package priv.wjh.permission.domain.permission.service;
 
 import priv.wjh.permission.api.ao.RoleRequestAo;
 import priv.wjh.permission.api.vo.PesVo;
