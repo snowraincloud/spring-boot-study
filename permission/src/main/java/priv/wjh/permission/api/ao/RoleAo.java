@@ -3,7 +3,7 @@ package priv.wjh.permission.api.ao;
 import java.util.Date;
 import java.util.List;
 
-public class RoleRequestAo {
+public class RoleAo {
 
     private Long id;
 
@@ -11,7 +11,6 @@ public class RoleRequestAo {
 
     private String description;
 
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
 
     private Byte status;
@@ -24,10 +23,10 @@ public class RoleRequestAo {
 //        }
     }
 
-    public RoleRequestAo() {
+    public RoleAo() {
     }
 
-    public RoleRequestAo(Long id, String name, String description, Date createTime, Byte status, List<Long> permissionId) {
+    public RoleAo(Long id, String name, String description, Date createTime, Byte status, List<Long> permissionId) {
         this.id = id;
         this.name = name;
         this.description = description;

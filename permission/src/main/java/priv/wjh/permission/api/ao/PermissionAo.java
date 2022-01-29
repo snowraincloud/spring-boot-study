@@ -2,7 +2,7 @@ package priv.wjh.permission.api.ao;
 
 import java.util.Date;
 
-public class PermissionRequestAo {
+public class PermissionAo {
 
     private Long id;
 
@@ -32,10 +32,10 @@ public class PermissionRequestAo {
 //        }
     }
 
-    public PermissionRequestAo() {
+    public PermissionAo() {
     }
 
-    public PermissionRequestAo(Long id, Long pid, String name, String value, String uri, Byte type, Date createTime, Byte status) {
+    public PermissionAo(Long id, Long pid, String name, String value, String uri, Byte type, Date createTime, Byte status) {
         this.id = id;
         this.pid = pid;
         this.name = name;

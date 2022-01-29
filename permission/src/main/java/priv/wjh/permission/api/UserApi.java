@@ -1,4 +1,4 @@
-package priv.wjh.permission.api.controller;
+package priv.wjh.permission.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -8,20 +8,15 @@ import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import priv.wjh.permission.api.ao.BaseDataAo;
 import priv.wjh.permission.api.ao.BaseSelectAo;
 import priv.wjh.permission.api.ao.UserAo;
 import priv.wjh.permission.domain.permission.po.Role;
 import priv.wjh.permission.domain.permission.po.User;
 import priv.wjh.permission.domain.permission.service.UserService;
-import priv.wjh.permission.infrastructure.annotation.MyUnpack;
 import priv.wjh.permission.infrastructure.rsp.Rsp;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -30,7 +25,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UserApi {
 
     @Autowired
     private UserService userService;
@@ -38,9 +33,23 @@ public class UserController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @PostMapping
-    public List<User> findUser(@MyUnpack @Valid BaseDataAo<UserAo> userAo){
+    @GetMapping
+    public List<User> find(UserAo Ao){
+        return null;
+    }
 
+    @GetMapping("/role")
+    public List<Role> findRolesById(UserAo ao){
+        return null;
+    }
+
+    @PostMapping
+    public User add(@RequestBody User user){
+        return null;
+    }
+
+    @PutMapping
+    public User update(@RequestBody User user){
         return null;
     }
 
@@ -68,12 +77,6 @@ public class UserController {
     public Rsp<Integer> setStatus(@RequestBody UserAo userAo) throws JsonProcessingException {
         if(null == userAo || null == userAo.getId() || null == userAo.getStatus()){
             return Rsp.error("信息不完整");
-        }
-        if(userAo.getStatus() != 0 && userAo.getStatus() != 1){
-            return Rsp.error("信息错误");
-        }
-        if(userAo.getId().equals(1L) && userAo.getStatus() == 0){
-            return Rsp.error("超管用户无法停用");
         }
         Integer integer = userService.setStatus(userAo);
         return Rsp.ok(integer);

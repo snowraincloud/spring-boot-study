@@ -1,4 +1,4 @@
-package priv.wjh.permission.api.controller;
+package priv.wjh.permission.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -8,24 +8,25 @@ import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import priv.wjh.permission.api.ao.BaseDataAo;
 import priv.wjh.permission.api.ao.BaseSelectAo;
-import priv.wjh.permission.api.ao.RoleRequestAo;
+import priv.wjh.permission.api.ao.RoleAo;
 import priv.wjh.permission.api.vo.PesVo;
+import priv.wjh.permission.domain.permission.po.Permission;
 import priv.wjh.permission.domain.permission.po.Role;
 import priv.wjh.permission.domain.permission.service.RoleService;
 import priv.wjh.permission.infrastructure.rsp.Rsp;
 
 import java.util.List;
 
+/**
+ * @author wangjunhao
+ */
 @Slf4j
 @RestController
 @RequestMapping("/role")
-public class RoleController {
+public class RoleApi {
 
     @Autowired
     private RoleService roleService;
@@ -33,11 +34,32 @@ public class RoleController {
     @Autowired
     private ObjectMapper objectMapper;
 
+
+    @GetMapping
+    public List<Role> find(RoleAo ao){
+        return null;
+    }
+
+    @GetMapping("/permission")
+    public List<Permission> findPermissionsById(RoleAo ao){
+        return null;
+    }
+
+    @PostMapping
+    public Role add(@RequestBody Role role){
+        return null;
+    }
+
+    @PutMapping
+    public Role update(@RequestBody Role role){
+        return null;
+    }
+
     @PostMapping("/selectRole")
     public Rsp<String> selectRole(@RequestBody BaseSelectAo ao) throws JsonProcessingException {
         logger.debug("requestData: {}", ao);
-        BaseDataAo<RoleRequestAo> baseDataAo = objectMapper.readValue(ao.getData(), new TypeReference<BaseDataAo<RoleRequestAo>>(){});
-        RoleRequestAo roleRequestAo = baseDataAo.getBody();
+        BaseDataAo<RoleAo> baseDataAo = objectMapper.readValue(ao.getData(), new TypeReference<BaseDataAo<RoleAo>>(){});
+        RoleAo roleRequestAo = baseDataAo.getBody();
         roleRequestAo.check();
         PageHelper.startPage(baseDataAo.getCurrentPage(), baseDataAo.getPageSize());
         List<Role> roles = roleService.selectRole(roleRequestAo);
@@ -54,7 +76,7 @@ public class RoleController {
     }
 
     @PostMapping("/setStatus")
-    public Rsp<Integer> setStatus(@RequestBody RoleRequestAo roleRequestAo) throws JsonProcessingException {
+    public Rsp<Integer> setStatus(@RequestBody RoleAo roleRequestAo) throws JsonProcessingException {
         if(null == roleRequestAo || null == roleRequestAo.getId()){
             return Rsp.error("信息不完整");
         }
@@ -69,7 +91,7 @@ public class RoleController {
     }
 
     @PostMapping("/getPermission")
-    public Rsp<List<PesVo>> getPermissions(@RequestBody RoleRequestAo roleRequestAo) throws JsonProcessingException {
+    public Rsp<List<PesVo>> getPermissions(@RequestBody RoleAo roleRequestAo) throws JsonProcessingException {
         if(null == roleRequestAo){
             return Rsp.error("信息不完整");
         }
@@ -87,7 +109,7 @@ public class RoleController {
 //    }
 
     @PostMapping("/insertRole")
-    public Rsp<Integer> insertRole(@RequestBody RoleRequestAo roleRequestAo) throws JsonProcessingException {
+    public Rsp<Integer> insertRole(@RequestBody RoleAo roleRequestAo) throws JsonProcessingException {
         if(null == roleRequestAo || !StringUtils.hasText(roleRequestAo.getName())){
             return Rsp.error("信息不完整");
         }
@@ -104,7 +126,7 @@ public class RoleController {
     }
 
     @PostMapping("/updateRole")
-    public Rsp<Integer> updateRole(@RequestBody RoleRequestAo roleRequestAo) throws JsonProcessingException {
+    public Rsp<Integer> updateRole(@RequestBody RoleAo roleRequestAo) throws JsonProcessingException {
         if(null == roleRequestAo){
             return Rsp.error("信息不完整");
         }

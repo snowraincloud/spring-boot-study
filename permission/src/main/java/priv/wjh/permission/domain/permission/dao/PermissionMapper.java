@@ -1,7 +1,7 @@
 package priv.wjh.permission.domain.permission.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import priv.wjh.permission.api.ao.PermissionRequestAo;
+import priv.wjh.permission.api.ao.PermissionAo;
 import priv.wjh.permission.domain.permission.po.Permission;
 import priv.wjh.permission.domain.permission.po.Role;
 
@@ -13,17 +13,17 @@ public interface PermissionMapper{
 
     List<Permission> selectAll();
 
-    List<Permission> selectPermission(PermissionRequestAo permissionRequestAo);
+    List<Permission> selectPermission(PermissionAo permissionRequestAo);
 
     List<Permission> selectByType(Byte type);
 
-    int updateStatus(PermissionRequestAo permissionRequestAo);
+    int updateStatus(PermissionAo permissionRequestAo);
 
-    int updateStatusByPid(PermissionRequestAo permissionRequestAo);
+    int updateStatusByPid(PermissionAo permissionRequestAo);
 
-    int insertPermission(PermissionRequestAo permissionRequestAo);
+    int insertPermission(PermissionAo permissionRequestAo);
 
-    int updatePermission(PermissionRequestAo permissionRequestAo);
+    int updatePermission(PermissionAo permissionRequestAo);
 
     List<Permission> selectByIds(List<Long> ids);
 

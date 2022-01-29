@@ -11,14 +11,12 @@ import priv.wjh.permission.domain.permission.dao.UserMapper;
 import priv.wjh.permission.domain.permission.dao.UserRoleRelationMapper;
 import priv.wjh.permission.domain.permission.po.Role;
 import priv.wjh.permission.domain.permission.po.User;
-import priv.wjh.permission.domain.permission.po.UserRoleRelation;
-import priv.wjh.permission.domain.permission.service.UserService;
 import priv.wjh.permission.domain.permission.service.ILogoutUserService;
+import priv.wjh.permission.domain.permission.service.UserService;
 import priv.wjh.permission.infrastructure.jwt.JwtToken;
 
 import javax.servlet.ServletContext;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -73,7 +71,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer setStatus(UserAo userAo) {
         int j = userMapper.updateStatus(userAo);
-        if (j != 0 && userAo.getStatus() == 0){
+        if (j != 0 && !userAo.getStatus()){
             logoutUserService.logoutByUserId(userAo.getId());
         }
         return j;
@@ -111,14 +109,14 @@ public class UserServiceImpl implements UserService {
         if(0 == i){
             throw new RuntimeException("插入用户失败");
         }
-        List<UserRoleRelation> userRoleRelations = new ArrayList<>(userAo.getRoleId().size());
-        for(Long id : userAo.getRoleId()){
-            userRoleRelations.add(new UserRoleRelation(id, userAo.getId()));
-        }
-        i = userRoleRelationMapper.insertList(userRoleRelations);
-        if(i != userAo.getRoleId().size()){
-            throw new RuntimeException("插入用户角色失败");
-        }
+//        List<UserRoleRelation> userRoleRelations = new ArrayList<>(userAo.getRoleId().size());
+//        for(Long id : userAo.getRoleId()){
+//            userRoleRelations.add(new UserRoleRelation(id, userAo.getId()));
+//        }
+//        i = userRoleRelationMapper.insertList(userRoleRelations);
+//        if(i != userAo.getRoleId().size()){
+//            throw new RuntimeException("插入用户角色失败");
+//        }
 
         return i;
     }
@@ -127,27 +125,28 @@ public class UserServiceImpl implements UserService {
     @Transactional(rollbackFor = RuntimeException.class)
     @Override
     public int update(UserAo ao) {
-        if (ao.getId().equals(1L)){
-            ao.setStatus((byte) 1);
-        }
-        int i = userMapper.update(ao);
-        if (0 == i){
-            throw new RuntimeException("更新用户失败");
-        }
-        userRoleRelationMapper.deleteByUserId(ao.getId());
-        if (ao.getRoleId() != null && ao.getRoleId().size() != 0){
-            List<UserRoleRelation> userRoleRelations = new ArrayList<>(ao.getRoleId().size());
-            for(Long id : ao.getRoleId()){
-                userRoleRelations.add(new UserRoleRelation(id, ao.getId()));
-            }
-            i = userRoleRelationMapper.insertList(userRoleRelations);
-            if(i != ao.getRoleId().size()){
-                throw new RuntimeException("插入用户角色失败");
-            }
-        }
-        if (ao.getStatus() == 0){
-            logoutUserService.logoutByUserId(ao.getId());
-        }
-        return i;
+//        if (ao.getId().equals(1L)){
+//            ao.setStatus((byte) 1);
+//        }
+//        int i = userMapper.update(ao);
+//        if (0 == i){
+//            throw new RuntimeException("更新用户失败");
+//        }
+//        userRoleRelationMapper.deleteByUserId(ao.getId());
+//        if (ao.getRoleId() != null && ao.getRoleId().size() != 0){
+//            List<UserRoleRelation> userRoleRelations = new ArrayList<>(ao.getRoleId().size());
+//            for(Long id : ao.getRoleId()){
+//                userRoleRelations.add(new UserRoleRelation(id, ao.getId()));
+//            }
+//            i = userRoleRelationMapper.insertList(userRoleRelations);
+//            if(i != ao.getRoleId().size()){
+//                throw new RuntimeException("插入用户角色失败");
+//            }
+//        }
+//        if (ao.getStatus() == 0){
+//            logoutUserService.logoutByUserId(ao.getId());
+//        }
+//        return i;
+        return 1;
     }
 }

@@ -2,7 +2,7 @@ package priv.wjh.permission.domain.permission.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import priv.wjh.permission.api.ao.PermissionRequestAo;
+import priv.wjh.permission.api.ao.PermissionAo;
 import priv.wjh.permission.domain.permission.dao.PermissionMapper;
 import priv.wjh.permission.domain.permission.dao.RolePermissionRelationMapper;
 import priv.wjh.permission.domain.permission.po.Permission;
@@ -24,12 +24,12 @@ public class PermissionServiceImpl implements PermissionService {
     private ILogoutUserService logoutUserService;
 
     @Override
-    public List<Permission> selectPermission(PermissionRequestAo permissionRequestAo) {
+    public List<Permission> selectPermission(PermissionAo permissionRequestAo) {
         return permissionMapper.selectPermission(permissionRequestAo);
     }
 
     @Override
-    public Integer setStatus(PermissionRequestAo permissionRequestAo) {
+    public Integer setStatus(PermissionAo permissionRequestAo) {
         int i = permissionMapper.updateStatus(permissionRequestAo);
         if (i != 0 && permissionRequestAo.getStatus() == 0){
             logoutUserService.logoutUserByPermissionId(permissionRequestAo.getId());
@@ -39,7 +39,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public Integer insertPermission(PermissionRequestAo permissionRequestAo) {
+    public Integer insertPermission(PermissionAo permissionRequestAo) {
         int i = permissionMapper.insertPermission(permissionRequestAo);
         return i;
     }
@@ -51,7 +51,7 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
     @Override
-    public Integer updatePermission(PermissionRequestAo permissionRequestAo) {
+    public Integer updatePermission(PermissionAo permissionRequestAo) {
         if(null == permissionRequestAo.getPid() || (permissionRequestAo.getType() != null && permissionRequestAo.getType() == 0)){
             permissionRequestAo.setPid(0L);
         }

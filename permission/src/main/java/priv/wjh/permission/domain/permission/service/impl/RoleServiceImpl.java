@@ -3,7 +3,7 @@ package priv.wjh.permission.domain.permission.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import priv.wjh.permission.api.ao.RoleRequestAo;
+import priv.wjh.permission.api.ao.RoleAo;
 import priv.wjh.permission.domain.permission.dao.PermissionMapper;
 import priv.wjh.permission.domain.permission.dao.RoleMapper;
 import priv.wjh.permission.domain.permission.dao.RolePermissionRelationMapper;
@@ -39,12 +39,12 @@ public class RoleServiceImpl implements RoleService {
     private ILogoutUserService logoutUserService;
 
     @Override
-    public List<Role> selectRole(RoleRequestAo roleRequestAo) {
+    public List<Role> selectRole(RoleAo roleRequestAo) {
         return roleMapper.selectRole(roleRequestAo);
     }
 
     @Override
-    public Integer setStatus(RoleRequestAo roleRequestAo) {
+    public Integer setStatus(RoleAo roleRequestAo) {
         int i = roleMapper.updateStatus(roleRequestAo);
         if (i != 0 && roleRequestAo.getStatus() == 0){
             logoutUserService.logoutByRoleId(roleRequestAo.getId());
@@ -53,7 +53,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List getPermissions(RoleRequestAo roleRequestAo) {
+    public List getPermissions(RoleAo roleRequestAo) {
         if (roleRequestAo.getId() == null){
             List<Permission> permissions = permissionMapper.selectAll();
 //            return PermissionUtil.getPesVo(permissions);
@@ -89,7 +89,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     @Transactional(rollbackFor = RuntimeException.class)
-    public Integer insertRole(RoleRequestAo roleRequestAo) {
+    public Integer insertRole(RoleAo roleRequestAo) {
         int i = roleMapper.insertRole(roleRequestAo);
         if(i == 0){
             throw new RuntimeException();
@@ -113,7 +113,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Integer updateRole(RoleRequestAo roleRequestAo) {
+    public Integer updateRole(RoleAo roleRequestAo) {
 //        if (roleRequestAo.getId().equals(1L)){
 //            roleRequestAo.setStatus((byte) 1);
 //        }

@@ -1,7 +1,7 @@
 package priv.wjh.permission.domain.permission.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import priv.wjh.permission.api.ao.RoleRequestAo;
+import priv.wjh.permission.api.ao.RoleAo;
 import priv.wjh.permission.domain.permission.po.Permission;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 public interface RolePermissionRelationMapper{
     int deleteByRoleId(Long id);
 
-    int insertSelective(RoleRequestAo roleRequestAo);
+    int insertSelective(RoleAo roleRequestAo);
 
     List<Permission> selectByRoleId(Long id);
 
