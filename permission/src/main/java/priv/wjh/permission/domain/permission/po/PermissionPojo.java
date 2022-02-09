@@ -1,12 +1,15 @@
-package priv.wjh.permission.api.ao;
+package priv.wjh.permission.domain.permission.po;
 
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Data
-public class PermissionAo {
 
+/**
+ * @author wangjunhao
+ */
+@Data
+public class PermissionPojo {
     private Long id;
 
     private Long pid;
@@ -15,12 +18,14 @@ public class PermissionAo {
 
     private String value;
 
+    private Byte type;
+
     private String uri;
 
-    private Byte type;
+    private Boolean status;
 
     private LocalDateTime createTime;
 
-    private Boolean status;
+
 
 }

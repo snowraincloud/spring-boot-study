@@ -16,11 +16,11 @@ import java.util.List;
  * @author wangjunhao
  **/
 @Configuration
-public class JwtAuthenticationProvider implements AuthenticationProvider {
+public class MyAuthenticationProvider implements AuthenticationProvider {
 
     private final IPermissionProvider<? extends GrantedAuthority> permissionProvider;
 
-    public JwtAuthenticationProvider(IPermissionProvider<? extends GrantedAuthority> permissionProvider) {
+    public MyAuthenticationProvider(IPermissionProvider<? extends GrantedAuthority> permissionProvider) {
         this.permissionProvider = permissionProvider;
 
     }
@@ -34,12 +34,12 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        return new JwtAuthentication(authentication.getPrincipal(),
-                authentication.getCredentials(), permissionProvider.getPermission((String) authentication.getPrincipal()));
+        return new MyAuthentication(authentication.getPrincipal(),
+                                    authentication.getCredentials(), permissionProvider.getPermission((String) authentication.getPrincipal()));
     }
 
     @Override
     public boolean supports(Class<?> authentication) {
-        return authentication.isAssignableFrom(JwtAuthentication.class);
+        return authentication.isAssignableFrom(MyAuthentication.class);
     }
 }

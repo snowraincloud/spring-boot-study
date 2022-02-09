@@ -5,7 +5,8 @@ import lombok.Data;
 
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Positive;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author wangjunhao
@@ -20,8 +21,10 @@ public class UserAo {
     private String password;
 
     @Past(message = "创建时间不能大于当前时间")
-    private Date createTime;
+    private LocalDateTime createTime;
     @Past(message = "登陆时间不能大于当前时间")
-    private Date loginTime;
+    private LocalDateTime loginTime;
     private Boolean status;
+
+    private List<Long> roleIds;
 }

@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author wangjunhao
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,7 +16,5 @@ public class LoginAo {
     private String authCode;
     private String systemName;
     private String loginName;
-
-
 
 }

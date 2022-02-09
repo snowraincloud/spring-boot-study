@@ -1,4 +1,4 @@
-package priv.wjh.permission.infrastructure.enums;
+package priv.wjh.permission.infrastructure.enums.rsp;
 
 /**
  * <h1>拒绝访问,返回值信息枚举</h1>

@@ -1,7 +1,7 @@
 package priv.wjh.permission.api.vo;
 
-import priv.wjh.permission.domain.permission.po.Permission;
-import priv.wjh.permission.domain.permission.po.Role;
+import priv.wjh.permission.domain.permission.po.PermissionPojo;
+import priv.wjh.permission.domain.permission.po.RolePojo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +18,6 @@ public class AuthVo {
     private Long id;
     private String password;
     private String token;
-    private List<Role> roles;
-    private List<Permission> permissions;
+    private List<RolePojo> rolePojos;
+    private List<PermissionPojo> permissionPojos;
 }

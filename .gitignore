@@ -35,8 +35,8 @@ out/
 
 ### VS Code ###
 .vscode/
-### Example user template template
-### Example user template
+### Example userPojo template template
+### Example userPojo template
 
 # IntelliJ project files
 .idea
@@ -85,8 +85,8 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
-### Example user template template
-### Example user template
+### Example userPojo template template
+### Example userPojo template
 
 # IntelliJ project files
 .idea

@@ -6,7 +6,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
-import priv.wjh.permission.infrastructure.enums.AccessDeniedRspEnum;
+import priv.wjh.permission.infrastructure.enums.rsp.AccessDeniedRspEnum;
 import priv.wjh.permission.infrastructure.exception.MyAccessDeniedException;
 import priv.wjh.permission.infrastructure.rsp.Rsp;
 

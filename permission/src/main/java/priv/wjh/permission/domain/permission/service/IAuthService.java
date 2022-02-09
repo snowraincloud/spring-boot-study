@@ -1,16 +1,14 @@
 package priv.wjh.permission.domain.permission.service;
 
-import priv.wjh.permission.domain.permission.po.Permission;
-
-import java.util.List;
+import priv.wjh.permission.api.ao.LoginAo;
+import priv.wjh.permission.api.vo.LoginVo;
+import priv.wjh.permission.api.vo.ValidateCodeVo;
 
 public interface IAuthService {
 
+    LoginVo login(LoginAo ao);
 
-    boolean checkCache(String token);
+    Integer updatePassword();
 
-    Long getId(String token);
-
-    List<Permission> getPermission(Long id);
-    List<Permission> getPermission(String token);
+    ValidateCodeVo getValidateCode();
 }

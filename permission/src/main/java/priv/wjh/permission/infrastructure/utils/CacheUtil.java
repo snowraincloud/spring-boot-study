@@ -2,9 +2,12 @@ package priv.wjh.permission.infrastructure.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
+import priv.wjh.permission.infrastructure.enums.rsp.FailRspEnum;
+import priv.wjh.permission.infrastructure.exception.PermissionException;
 
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -15,6 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @author wangjunhao
  **/
 @Component
+@Slf4j
 public class CacheUtil {
 
     private final String PREFIX = "permission_";
@@ -34,11 +38,16 @@ public class CacheUtil {
         redisTemplate.delete(PREFIX + key);
     }
 
-    public <T> void put(String key, T value, long expired) throws JsonProcessingException {
+    public <T> void put(String key, T value, long expired) {
         if(value instanceof String){
             redisTemplate.opsForValue().set(PREFIX + key, (String) value, expired, TimeUnit.SECONDS);
         }else {
-            redisTemplate.opsForValue().set(PREFIX + key, objectMapper.writeValueAsString(value), expired, TimeUnit.SECONDS);
+            try {
+                redisTemplate.opsForValue().set(PREFIX + key, objectMapper.writeValueAsString(value), expired, TimeUnit.SECONDS);
+            } catch (JsonProcessingException e) {
+                logger.info("json转换失败: ", e);
+                throw new PermissionException(FailRspEnum.JSON_TRANSFORM_FAIL);
+            }
         }
     }
 

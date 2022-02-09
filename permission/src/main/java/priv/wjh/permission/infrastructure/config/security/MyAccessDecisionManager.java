@@ -12,7 +12,7 @@ import org.springframework.security.authentication.InsufficientAuthenticationExc
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.util.AntPathMatcher;
-import priv.wjh.permission.infrastructure.enums.AccessDeniedRspEnum;
+import priv.wjh.permission.infrastructure.enums.rsp.AccessDeniedRspEnum;
 import priv.wjh.permission.infrastructure.exception.MyAccessDeniedException;
 
 import java.util.Collection;
@@ -38,7 +38,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager{
      * @return 默认权限检验
      */
     @Bean
-    @ConditionalOnMissingBean
+    @ConditionalOnMissingBean(IAccessDecision.class)
     public static IAccessDecision accessDecision(){
         final AntPathMatcher antPathMatcher = new AntPathMatcher();
         return (authentication, object, configAttributes) -> {

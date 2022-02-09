@@ -1,7 +1,7 @@
 package priv.wjh.permission.infrastructure.exception;
 
 import org.springframework.security.access.AccessDeniedException;
-import priv.wjh.permission.infrastructure.enums.IRspEnum;
+import priv.wjh.permission.infrastructure.enums.rsp.IRspEnum;
 
 /**
  * //TODO

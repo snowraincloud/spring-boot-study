@@ -1,4 +1,4 @@
-package priv.wjh.permission.infrastructure.enums;
+package priv.wjh.permission.infrastructure.enums.rsp;
 
 /**
  * @author W
@@ -6,7 +6,9 @@ package priv.wjh.permission.infrastructure.enums;
 
 public enum LoginRspEnum implements IRspEnum {
     PASSWORD_ERROR(-100, "密码或用户名错误"),
-    VALIDATE_CODE_EXPIRED(-105, "验证码不正确或已失效");
+    VALIDATE_CODE_EXPIRED(-105, "验证码不正确或已失效"),
+
+    ;
 
     private final int code;
     private final String message;

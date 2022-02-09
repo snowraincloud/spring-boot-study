@@ -3,12 +3,12 @@ package priv.wjh.permission.api.vo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 public class LoginVo {
-    private Date loginTime;
+    private LocalDateTime loginTime;
     private String loginName;
     private Long id;
     private String userName;

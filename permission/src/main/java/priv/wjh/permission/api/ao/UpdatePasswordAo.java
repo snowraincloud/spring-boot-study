@@ -9,5 +9,4 @@ public class UpdatePasswordAo {
     private String token;
     private String oldPassword;
     private String newPassword;
-    private String confirmPassword;
 }

@@ -1,18 +1,12 @@
-package priv.wjh.permission.infrastructure.enums;
+package priv.wjh.permission.infrastructure.enums.rsp;
 
-/**
- * //TODO
- *
- * @author wangjunhao
- **/
-public enum FailRspEnum implements IRspEnum {
-    ZERO(0, "请求参数错误"),
-    ;
+public enum PatternRspEnum implements IRspEnum {
+    PATTERN(0,"参数不合规范");
 
     private final int code;
     private final String message;
 
-    private FailRspEnum(int code, String message) {
+    private PatternRspEnum(int code, String message) {
         this.code = code;
         this.message = message;
     }

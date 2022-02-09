@@ -67,9 +67,10 @@ public class JwtService {
             e.printStackTrace();
             return Optional.empty();
         }
-        if (payload.getExpiresAt().getTime() <= System.currentTimeMillis()){
-            return Optional.empty();
-        }
+        // 过期处理
+//        if (payload.getExpiresAt().getTime() <= System.currentTimeMillis()){
+//            return Optional.empty();
+//        }
         return Optional.ofNullable(payload.getSubject());
     }
 

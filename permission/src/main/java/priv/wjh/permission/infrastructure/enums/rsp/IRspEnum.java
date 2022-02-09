@@ -1,4 +1,4 @@
-package priv.wjh.permission.infrastructure.enums;
+package priv.wjh.permission.infrastructure.enums.rsp;
 
 
 /**

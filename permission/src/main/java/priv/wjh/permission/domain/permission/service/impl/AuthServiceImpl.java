@@ -1,91 +1,66 @@
 package priv.wjh.permission.domain.permission.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import priv.wjh.permission.domain.permission.dao.PermissionMapper;
-import priv.wjh.permission.domain.permission.dao.UserMapper;
-import priv.wjh.permission.domain.permission.dao.UserRoleRelationMapper;
-import priv.wjh.permission.domain.permission.po.Permission;
-import priv.wjh.permission.domain.permission.po.Role;
-import priv.wjh.permission.domain.permission.po.User;
+import priv.wjh.permission.api.ao.LoginAo;
+import priv.wjh.permission.api.vo.LoginVo;
+import priv.wjh.permission.api.vo.ValidateCodeVo;
+import priv.wjh.permission.domain.permission.dao.AuthMapper;
+import priv.wjh.permission.domain.permission.po.UserPojo;
 import priv.wjh.permission.domain.permission.service.IAuthService;
-import priv.wjh.permission.infrastructure.jwt.JwtToken;
+import priv.wjh.permission.infrastructure.enums.rsp.LoginRspEnum;
+import priv.wjh.permission.infrastructure.exception.PermissionException;
+import priv.wjh.permission.infrastructure.jwt.JwtService;
 import priv.wjh.permission.infrastructure.utils.CacheUtil;
 
-import java.util.*;
-
+/**
+ *
+ * @author wangjunhao
+ */
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class AuthServiceImpl implements IAuthService {
 
-    @Autowired
-    private JwtToken jwtToken;
-    @Autowired
-    private UserRoleRelationMapper userRoleRelationMapper;
+    private final AuthMapper authMapper;
+    private final CacheUtil cacheUtil;
+    private final JwtService jwtService;
 
-    @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private PermissionMapper permissionMapper;
 
-    @Autowired
-    private CacheUtil cacheUtil;
 
     @Override
-    public boolean checkCache(String token){
-        try {
-            Optional<String> optionalS =  cacheUtil.get(token);
-            if (optionalS.isPresent()){
-                cacheUtil.put(token, getId(token), 10 * 60 * 6);
-                return true;
-            }
-            return false;
-        }catch (Exception e){
-            logger.info("检验缓存失败", e);
-            return false;
+    public LoginVo login(LoginAo ao) {
+       String code = cacheUtil.get(ao.getKeyCode())
+                .orElseThrow(() -> new PermissionException(LoginRspEnum.VALIDATE_CODE_EXPIRED));
+
+        if (!code.equals(ao.getAuthCode())) {
+            throw new PermissionException(LoginRspEnum.VALIDATE_CODE_EXPIRED);
         }
-    }
+        UserPojo userPojo = authMapper.findUser(ao);
 
+        LoginVo loginVo = new LoginVo();
+        loginVo.setLoginTime(userPojo.getLoginTime());
+        loginVo.setLoginName(userPojo.getUsername());
+        loginVo.setUserName(userPojo.getUsername());
+        loginVo.setId(userPojo.getId());
 
-    @Override
-    public Long getId(String token){
-        return Long.valueOf(jwtToken.getUserInfoFromToken(token));
-    }
+        String token = jwtService.generateAccessToken(String.valueOf(userPojo.getId()));
+        loginVo.setToken(token);
 
-
-    @Override
-    public List<Permission> getPermission(Long id) {
-        if (id.equals(1L)){
-            List<Permission> tmp = permissionMapper.selectAll();
-            List<Permission> permissions = new ArrayList<>();
-            Set<Long> ids = new HashSet<>();
-            for (Permission permission : tmp){
-                if (permission.getType() == 0) {
-                    permissions.add(permission);
-                    ids.add(permission.getId());
-                }
-            }
-            for (Permission permission : tmp){
-                if (permission.getType() == 1 && ids.contains(permission.getPid())) {
-                    permissions.add(permission);
-                }
-            }
-            return permissions;
-        }else {
-            User user = userMapper.selectById(id);
-            if (user.getStatus().equals(0)){
-                return new ArrayList<>();
-            }
-            List<Role> roles = userRoleRelationMapper.selectByUserId(id);
-
-            return permissionMapper.selectEnableByRoles(roles);
-        }
+        cacheUtil.put(token, userPojo, 60 * 10);
+        return loginVo;
     }
 
     @Override
-    public List<Permission> getPermission(String token) {
-        Long id = Long.valueOf(jwtToken.getUserInfoFromToken(token));
-        return getPermission(id);
+    public Integer updatePassword() {
+        SecurityContextHolder.getContext().getAuthentication();
+        return null;
+    }
+
+    @Override
+    public ValidateCodeVo getValidateCode() {
+        return null;
     }
 }

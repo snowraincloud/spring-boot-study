@@ -1,7 +1,7 @@
 package priv.wjh.permission.infrastructure.rsp;
 
 
-import priv.wjh.permission.infrastructure.enums.IRspEnum;
+import priv.wjh.permission.infrastructure.enums.rsp.IRspEnum;
 
 import java.util.Date;
 

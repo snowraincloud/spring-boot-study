@@ -8,7 +8,7 @@
     
     <resultMap id="userRoleMap" type="priv.wjh.security.domain.auth.User" autoMapping="true">
         <id column="id" property="id" jdbcType="INTEGER" />
-        <collection property="roles" ofType="priv.wjh.security.domain.auth.Role">
+        <collection property="rolePojos" ofType="priv.wjh.security.domain.auth.Role">
             <id column="role_id" property="id" jdbcType="INTEGER" />
             <result column="display_name" property="displayName"/>
             <result column="role_name" property="roleName"/>
@@ -23,7 +23,7 @@
     <select id="findRolesByMobile" resultMap="userRoleMap">
         select u.*, role_id, role_name, display_name
         from users u
-        left join users_roles ur on u.id = ur.user_id left join roles on ur.role_id = roles.id
+        left join users_roles ur on u.id = ur.user_id left join rolePojos on ur.role_id = rolePojos.id
         where mobile = #{mobile}
     </select>
 

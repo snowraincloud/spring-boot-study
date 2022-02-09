@@ -1,0 +1,42 @@
+server:
+  port: 8848
+spring:
+  redis:
+    host: 10.208.2.134
+    port: 26379
+    password: wjh_963852741.
+    timeout: 5000
+    database: 0
+
+
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://10.208.2.47:3306/practice?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  config:
+    activate:
+      on-profile: dev
+
+
+mybatis:
+  mapper-locations:
+    - classpath:priv/wjh/permission/domain/permission/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+# # 分页配置参数
+# page-helper:
+#   page-size-zero: true
+#   helper-dialect: mysql
+#   reasonable: true
+#   support-methods-arguments: true
+#   params: count=countSql
+
+# logging:
+#   level:
+#
+
+me:
+  jwt:
+    secret: 123456
+    refresh-secret: 123456

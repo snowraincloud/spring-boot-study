@@ -1,6 +1,9 @@
 package priv.wjh.permission.api.ao;
 
 
+/**
+ * @author wangjunhao
+ */
 public class BaseSelectAo{
 
 	private String op;

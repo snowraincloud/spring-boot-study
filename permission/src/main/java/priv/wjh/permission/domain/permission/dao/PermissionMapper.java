@@ -1,31 +1,23 @@
 package priv.wjh.permission.domain.permission.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import priv.wjh.permission.api.ao.PermissionAo;
-import priv.wjh.permission.domain.permission.po.Permission;
-import priv.wjh.permission.domain.permission.po.Role;
+import priv.wjh.permission.domain.permission.po.PermissionPojo;
+import priv.wjh.permission.domain.permission.po.RolePojo;
 
 import java.util.List;
 
 
+/**
+ * @author wangjunhao
+ */
 @Mapper
 public interface PermissionMapper{
 
-    List<Permission> selectAll();
+    List<PermissionPojo> findByRole(RolePojo rolePojo);
+    List<PermissionPojo> find(PermissionPojo permissionPojo);
+    int add(PermissionPojo permissionPojo);
+    int update(PermissionPojo permissionPojo);
 
-    List<Permission> selectPermission(PermissionAo permissionRequestAo);
 
-    List<Permission> selectByType(Byte type);
 
-    int updateStatus(PermissionAo permissionRequestAo);
-
-    int updateStatusByPid(PermissionAo permissionRequestAo);
-
-    int insertPermission(PermissionAo permissionRequestAo);
-
-    int updatePermission(PermissionAo permissionRequestAo);
-
-    List<Permission> selectByIds(List<Long> ids);
-
-    List<Permission> selectEnableByRoles(List<Role> roles);
 }

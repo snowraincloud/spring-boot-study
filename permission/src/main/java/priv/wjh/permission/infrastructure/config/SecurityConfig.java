@@ -1,5 +1,6 @@
 package priv.wjh.permission.infrastructure.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.ObjectPostProcessor;
@@ -18,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import priv.wjh.permission.infrastructure.config.security.JwtAuthenticationProvider;
+import priv.wjh.permission.infrastructure.config.security.MyAuthenticationProvider;
 import priv.wjh.permission.infrastructure.config.security.JwtFilter;
 import priv.wjh.permission.infrastructure.config.security.MyAccessDecisionManager;
 import priv.wjh.permission.infrastructure.config.security.MyFilterInvocationSecurityMetadataSource;
@@ -30,25 +31,16 @@ import priv.wjh.permission.infrastructure.jwt.JwtService;
  * @author wangjunhao
  **/
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final JwtAuthenticationProvider jwtAuthenticationProvider;
+    private final MyAuthenticationProvider jwtAuthenticationProvider;
     private final CorsConfigurationSource corsConfigurationSource;
     private final AuthenticationEntryPoint authenticationEntryPoint;
     private final AccessDeniedHandler accessDeniedHandler;
     private final MyAccessDecisionManager myAccessDecisionManager;
     private final MyFilterInvocationSecurityMetadataSource myFilterInvocationSecurityMetadataSource;
     private final JwtService jwtService;
-
-    public SecurityConfig(JwtAuthenticationProvider jwtAuthenticationProvider, CorsConfigurationSource corsConfigurationSource, AuthenticationEntryPoint authenticationEntryPoint, AccessDeniedHandler accessDeniedHandler, MyAccessDecisionManager myAccessDecisionManager, MyFilterInvocationSecurityMetadataSource myFilterInvocationSecurityMetadataSource, JwtService jwtService) {
-        this.jwtAuthenticationProvider = jwtAuthenticationProvider;
-        this.corsConfigurationSource = corsConfigurationSource;
-        this.authenticationEntryPoint = authenticationEntryPoint;
-        this.accessDeniedHandler = accessDeniedHandler;
-        this.myAccessDecisionManager = myAccessDecisionManager;
-        this.myFilterInvocationSecurityMetadataSource = myFilterInvocationSecurityMetadataSource;
-        this.jwtService = jwtService;
-    }
 
 
     @Override

@@ -1,9 +1,12 @@
-package com.wanshun.console.permission.vo;
+package priv.wjh.permission.api.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @author wangjunhao
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
