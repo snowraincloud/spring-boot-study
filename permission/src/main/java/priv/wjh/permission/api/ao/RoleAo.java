@@ -5,6 +5,9 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * @author wangjunhao
+ */
 @Data
 public class RoleAo {
 

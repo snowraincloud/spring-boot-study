@@ -34,7 +34,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        return new MyAuthentication(authentication.getPrincipal(),
+        return new MyAuthentication((Long) authentication.getPrincipal(),
                                     authentication.getCredentials(), permissionProvider.getPermission((String) authentication.getPrincipal()));
     }
 

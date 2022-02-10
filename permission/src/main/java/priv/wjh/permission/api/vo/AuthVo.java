@@ -18,6 +18,6 @@ public class AuthVo {
     private Long id;
     private String password;
     private String token;
-    private List<RolePojo> rolePojos;
-    private List<PermissionPojo> permissionPojos;
+    private List<RolePojo> roles;
+    private List<PermissionPojo> permissions;
 }

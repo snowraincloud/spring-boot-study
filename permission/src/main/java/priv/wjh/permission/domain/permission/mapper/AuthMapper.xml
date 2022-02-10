@@ -4,5 +4,65 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="priv.wjh.permission.domain.permission.dao.AuthMapper">
 
-    <select id="findUser" resultType="priv.wjh.permission.domain.permission.po.UserPojo"></select>
+    <sql id="userColumn">
+        id, username, password, create_time, login_time, status
+    </sql>
+
+    <sql id="permissionColumn">
+        id, pid, name, value, type, uri, status, create_time
+    </sql>
+
+    <sql id="userTable">
+        user
+    </sql>
+
+    <sql id="permissionTable">
+        permission
+    </sql>
+
+    <update id="updatePassword">
+        update
+        <include refid="userTable"/>
+        set password = #{newPassword}
+        where id = #{id} and password = #{oldPassword}
+    </update>
+
+    <select id="findUser" resultType="priv.wjh.permission.domain.permission.po.UserPojo">
+        select
+        <include refid="userColumn"/>
+        from
+        <include refid="userTable"/>
+        where username = #{loginName} and password = #{password}
+    </select>
+    <select id="findEnablePermission" resultType="priv.wjh.permission.domain.permission.po.PermissionPojo">
+        select
+        <include refid="permissionColumn"/>
+        from permission
+        where status = 1
+    </select>
+    <select id="findRoleByUserId" resultType="java.lang.Long">
+        select r.id
+        from user u left join user_role_relation url on url.user_id = u.id
+        left join role r on r.id = url.role_id
+        where u.id = #{id} and r.status = 1
+    </select>
+    <select id="findPermissionByRoleIds" resultType="priv.wjh.permission.domain.permission.po.PermissionPojo">
+        select p.*
+        from role_permission_relation rpl left join permission p on p.id = rpl.permission_id
+        where rpl.role_id in
+        <foreach collection="roles" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+        and p.status = 1
+    </select>
+    <select id="findParentPermission" resultType="priv.wjh.permission.domain.permission.po.PermissionPojo">
+        select
+        <include refid="permissionColumn"/>
+        from
+        <include refid="permissionTable"/>
+        where id in
+        <foreach collection="ids" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </select>
 </mapper>

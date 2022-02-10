@@ -34,7 +34,7 @@ public class CacheUtil {
         return Optional.ofNullable(redisTemplate.opsForValue().get(PREFIX + key));
     }
 
-    public <T> void remove(T key){
+    public void remove(String key){
         redisTemplate.delete(PREFIX + key);
     }
 

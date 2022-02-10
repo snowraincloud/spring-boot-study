@@ -5,8 +5,11 @@ import org.springframework.web.bind.annotation.*;
 import priv.wjh.permission.api.ao.LoginAo;
 import priv.wjh.permission.api.ao.UpdatePasswordAo;
 import priv.wjh.permission.api.vo.LoginVo;
+import priv.wjh.permission.api.vo.MenuVo;
 import priv.wjh.permission.api.vo.ValidateCodeVo;
 import priv.wjh.permission.application.AuthApplicationService;
+
+import java.util.List;
 
 /**
  * //TODO
@@ -41,7 +44,7 @@ public class AuthApi {
     }
 
     @GetMapping("/menu")
-    public String getModuleMenu() {
+    public List<MenuVo> getModuleMenu() {
         return authApplicationService.getMenu();
     }
 }

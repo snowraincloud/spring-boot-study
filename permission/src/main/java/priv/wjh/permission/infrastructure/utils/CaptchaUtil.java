@@ -10,6 +10,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Base64;
 
+/**
+ * @author wangjunhao
+ */
 @Component
 public class CaptchaUtil {
     @Autowired

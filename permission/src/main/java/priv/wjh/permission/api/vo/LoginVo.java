@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author wangjunhao
+ */
 @Data
 @NoArgsConstructor
 public class LoginVo {
