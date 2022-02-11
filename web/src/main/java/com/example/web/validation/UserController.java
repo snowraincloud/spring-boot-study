@@ -1,7 +1,5 @@
-package com.example.web.web;
+package com.example.web.validation;
 
-import com.example.web.domain.User;
-import com.example.web.validation.ValidUserGroup;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;

@@ -31,15 +31,15 @@ public class LogAop {
         Enumeration params = request.getParameterNames();
         while(params.hasMoreElements()){
             String paramName = (String)params.nextElement();
-            log.info("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
+            logger.info("Parameter Name - "+paramName+", Value - "+request.getParameter(paramName));
         }
         Object result = proceedingJoinPoint.proceed();
         // 打印出参
-        log.info("Response Args   : {}", result);
+        logger.info("Response Args   : {}", result);
         // 执行耗时
-        log.info("Time-Consuming : {} ms", System.currentTimeMillis() - startTime);
+        logger.info("Time-Consuming : {} ms", System.currentTimeMillis() - startTime);
         System.out.println("around end");
-        log.info("=========================================== End ===========================================");
+        logger.info("=========================================== End ===========================================");
         return result;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.web.handler;
+package com.example.web.validation;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.validation.BindException;

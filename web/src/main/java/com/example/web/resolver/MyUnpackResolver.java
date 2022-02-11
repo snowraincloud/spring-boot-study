@@ -1,4 +1,4 @@
-package priv.wjh.permission.infrastructure.resolver;
+package com.example.web.resolver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.MethodParameter;
@@ -8,9 +8,6 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
-import priv.wjh.permission.api.ao.BaseSelectAo;
-import priv.wjh.permission.infrastructure.annotation.MyUnpack;
-import priv.wjh.permission.infrastructure.exception.MyMethodArgumentNotValidException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;

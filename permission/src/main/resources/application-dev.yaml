@@ -24,13 +24,13 @@ mybatis:
     - classpath:priv/wjh/permission/domain/permission/mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
-# # 分页配置参数
-# page-helper:
-#   page-size-zero: true
-#   helper-dialect: mysql
-#   reasonable: true
-#   support-methods-arguments: true
-#   params: count=countSql
+# 分页配置参数
+page-helper:
+  page-size-zero: true
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
 
 # logging:
 #   level:

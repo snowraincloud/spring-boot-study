@@ -1,6 +1,6 @@
 package com.example.web;
 
-import com.example.web.web.UserController;
+import com.example.web.validation.UserController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

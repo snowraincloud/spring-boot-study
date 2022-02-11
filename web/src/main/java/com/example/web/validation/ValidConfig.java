@@ -1,4 +1,4 @@
-package com.example.web.config;
+package com.example.web.validation;
 
 import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.annotation.Bean;

@@ -1,10 +1,10 @@
-package priv.wjh.permission.api.ao;
+package com.example.web.resolver;
 
 
 /**
  * @author wangjunhao
  */
-public class BaseSelectAo{
+public class BaseSelectAo {
 
 	private String op;
 	private String data;

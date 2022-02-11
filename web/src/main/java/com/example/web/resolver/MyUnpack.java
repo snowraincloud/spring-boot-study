@@ -1,4 +1,4 @@
-package priv.wjh.permission.infrastructure.annotation;
+package com.example.web.resolver;
 
 import java.lang.annotation.*;
 

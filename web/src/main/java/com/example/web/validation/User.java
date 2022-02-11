@@ -1,6 +1,5 @@
-package com.example.web.domain;
+package com.example.web.validation;
 
-import com.example.web.validation.ValidUserGroup;
 import com.example.web.validation.annotation.ValidEnumValues;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
