@@ -9,10 +9,10 @@ class JwtServiceTest extends Specification {
 
     def "test for jwt service"(){
         def jwtProperties = Stub(JwtProperties)
-        def jwtService = new JwtService(jwtProperties);
+        def jwtService = new JwtService(jwtProperties)
 
         given:
-        jwtProperties.getExpireTime() >> 1000
+        jwtProperties.getExpireTime() >> 10000
         jwtProperties.getSecret() >> "dwadwa"
 
         when:
@@ -20,7 +20,8 @@ class JwtServiceTest extends Specification {
         def test = jwtService.parserAccessToken(token)
 
         then:
-        test.empty
+        test.present
+        println(test)
     }
 
 }
