@@ -1,4 +1,4 @@
-rootProject.name = 'Spring-Boot-Study'
+rootProject.name = 'spring-boot-study'
 include 'annotation'
 include 'web'
 include 'security'
