@@ -1,0 +1,27 @@
+spring:
+  sql:
+    init:
+      mode: always
+      schema-locations:
+        - classpath:sql/schema.sql
+      data-locations: classpath:sql/*-data.sql
+  datasource:
+    driver-class-name: org.h2.Driver
+    password: ''
+    url: jdbc:h2:mem:test;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;DB_CLOSE_DELAY=-1
+    username: sa
+  h2:
+    console:
+      enabled: true
+      # UI 界面
+      path: /h2-console
+#       settings:
+#           # 禁止 ui界面 输出trace级别日志
+#           trace: false
+#           # 禁止 访问h2 数据库信息
+#           web-allow-others: false
+mybatis:
+  mapper-locations:
+    - classpath:priv/wjh/transaction/domain/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
