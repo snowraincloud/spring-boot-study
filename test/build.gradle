@@ -1,0 +1,16 @@
+dependencies {
+    // https://mvnrepository.com/artifact/com.ctrip.framework.apollo/apollo-client
+    implementation 'com.ctrip.framework.apollo:apollo-client:1.9.2'
+
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation 'commons-io:commons-io:2.11.0'
+
+    // jgit
+    // https://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit
+    implementation 'org.eclipse.jgit:org.eclipse.jgit:6.0.0.202111291000-r'
+
+    // https://mvnrepository.com/artifact/com.alibaba/druid
+    implementation 'com.alibaba:druid:1.2.8'
+
+}
+

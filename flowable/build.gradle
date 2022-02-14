@@ -1,0 +1,11 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    // https://mvnrepository.com/artifact/org.flowable/flowable-spring-boot-starter
+    implementation 'org.flowable:flowable-spring-boot-starter:6.7.0'
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation 'mysql:mysql-connector-java:8.0.22'
+
+    implementation 'com.h2database:h2:1.4.200'
+
+}

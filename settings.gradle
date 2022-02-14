@@ -4,4 +4,6 @@ include 'web'
 include 'security'
 include 'permission'
 include 'transaction'
+include 'test'
+include 'flowable'
 
