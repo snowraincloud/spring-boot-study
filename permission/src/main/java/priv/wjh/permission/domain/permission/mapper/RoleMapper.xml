@@ -31,20 +31,18 @@
         from
         <include refid="tableName"/>
         <where>
-            <trim suffixOverrides="and">
                 <if test="id != null">
-                    id = #{id} and
+                    and id = #{id}
                 </if>
                 <if test="name != null">
-                    name like concat(concat('%', #{name,jdbcType=VARCHAR}),'%') and
+                    and name like concat(concat('%', #{name,jdbcType=VARCHAR}),'%')
                 </if>
                 <if test="createTime != null">
-                    create_time > #{createTime} and
+                    and create_time > #{createTime}
                 </if>
                 <if test="status != null">
-                    status = #{status,jdbcType=TINYINT} and
+                    and status = #{status,jdbcType=TINYINT}
                 </if>
-            </trim>
         </where>
     </select>
 
@@ -57,17 +55,15 @@
         update
         <include refid="tableName"/>
         <set>
-            <trim suffixOverrides=",">
-                <if test="name != null">
-                    name = #{name},
-                </if>
-                <if test="status != null">
-                    status = #{status},
-                </if>
-                <if test="description != null">
-                    description = #{description},
-                </if>
-            </trim>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
         </set>
         where id = #{id}
     </update>

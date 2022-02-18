@@ -19,19 +19,19 @@
         <where>
             <trim suffixOverrides="and">
                 <if test="id != null">
-                    id = #{id} and
+                    and id = #{id}
                 </if>
                 <if test="username != null">
-                    username like concat(concat('%',#{username,jdbcType=VARCHAR}),'%') and
+                    and username like concat(concat('%',#{username,jdbcType=VARCHAR}),'%')
                 </if>
                 <if test="createTime != null">
-                    create_time > #{createTime} and
+                    and create_time > #{createTime}
                 </if>
                 <if test="loginTime != null">
-                    login_time > #{loginTime} and
+                    and login_time > #{loginTime}
                 </if>
                 <if test="status != null">
-                    status = #{status} and
+                    and status = #{status}
                 </if>
             </trim>
         </where>
@@ -48,17 +48,15 @@
         update
         <include refid="tableName"/>
         <set>
-            <trim suffixOverrides=",">
-                <if test="username != null">
-                    username = #{username},
-                </if>
-                <if test="status != null">
-                    status = #{status},
-                </if>
-                <if test="password != null">
-                    password = #{password},
-                </if>
-            </trim>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
         </set>
         where id = #{id}
     </update>

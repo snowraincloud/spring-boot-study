@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="priv.wjh.permission.domain.permission.dao.PermissionMapper">
 
+
     <sql id="Base_Column_List">
         id, pid, name, value, type, uri, status, create_time
     </sql>
@@ -30,35 +31,34 @@
         from
         <include refid="tableName"/>
         <where>
-            <trim suffixOverrides="and">
-                <if test="id != null">
-                    id = #{id} and
-                </if>
-                <if test="name != null">
-                    name like concat(concat('%',#{name,jdbcType=VARCHAR}),'%') and
-                </if>
-                <if test="value != null">
-                    value like concat(concat('%',#{value,jdbcType=VARCHAR}),'%') and
-                </if>
-                <if test="type != null">
-                    type = #{type,jdbcType=TINYINT} and
-                </if>
-                <if test="uri != null">
-                    uri like concat(concat('%',#{uri,jdbcType=VARCHAR}),'%') and
-                </if>
-                <if test="status != null">
-                    status = #{status,jdbcType=TINYINT} and
-                </if>
-                <if test="createTime != null">
-                    create_time > #{createTime,jdbcType=TIMESTAMP} and
-                </if>
-            </trim>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="name != null">
+                and name like concat(concat('%',#{name,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="value != null">
+                and value like concat(concat('%',#{value,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="type != null">
+                and type = #{type,jdbcType=TINYINT}
+            </if>
+            <if test="uri != null">
+                and uri like concat(concat('%',#{uri,jdbcType=VARCHAR}),'%')
+            </if>
+            <if test="status != null">
+                and status = #{status,jdbcType=TINYINT}
+            </if>
+            <if test="createTime != null">
+                and create_time > #{createTime,jdbcType=TIMESTAMP}
+            </if>
         </where>
 
     </select>
 
     <insert id="add" useGeneratedKeys="true" keyProperty="id">
-        insert into <include refid="tableName" />
+        insert into
+        <include refid="tableName"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
             pid,
             name,
@@ -92,26 +92,24 @@
         update
         <include refid="tableName"/>
         <set>
-            <trim suffixOverrides=",">
-                <if test="name != null">
-                    name = #{name},
-                </if>
-                <if test="value != null">
-                    value = #{value},
-                </if>
-                <if test="pid != null">
-                    pid = #{pid},
-                </if>
-                <if test="type != null">
-                    type = #{type},
-                </if>
-                <if test="uri != null">
-                    uri = #{uri},
-                </if>
-                <if test="status != null">
-                    status = #{status},
-                </if>
-            </trim>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="value != null">
+                value = #{value},
+            </if>
+            <if test="pid != null">
+                pid = #{pid},
+            </if>
+            <if test="type != null">
+                type = #{type},
+            </if>
+            <if test="uri != null">
+                uri = #{uri},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
         </set>
         where id = #{id}
     </update>
