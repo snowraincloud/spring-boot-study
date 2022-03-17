@@ -21,7 +21,7 @@ subprojects {
 
 
 
-    group 'org.example'
+    group 'priv.wjh.study'
     version '1.0-SNAPSHOT'
 
     tasks.withType(JavaCompile) {

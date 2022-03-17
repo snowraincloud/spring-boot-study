@@ -6,4 +6,6 @@ include 'permission'
 include 'transaction'
 include 'test'
 include 'flowable'
+include 'netty'
+include 'event'
 
