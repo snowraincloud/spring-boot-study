@@ -9,4 +9,5 @@ include 'flowable'
 include 'netty'
 include 'event'
 include 'graphql'
+include 'minio'
 
