@@ -1,4 +1,5 @@
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     // https://mvnrepository.com/artifact/com.ctrip.framework.apollo/apollo-client
     implementation 'com.ctrip.framework.apollo:apollo-client:1.9.2'
 

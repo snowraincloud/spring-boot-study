@@ -19,8 +19,10 @@ class MyEventListenerTest extends Specification {
         given:
         MyEvent myEvent = new MyEvent("start", type)
         myEventListener.type = null
+        when:
         applicationEventPublisher.publishEvent(myEvent)
-        expect:
+        then:
+        def ex = thrown(RuntimeException.class)
         myEventListener.type == expectType
 
         where:

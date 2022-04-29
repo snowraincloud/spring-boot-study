@@ -21,6 +21,7 @@ public class MyEventListener {
     public void handlerStartAndEndEvent(MyEvent myEvent){
         logger.info("HandlerStartAndEndEvent receive a event: {}", myEvent);
         type = myEvent.getType();
+        throw new RuntimeException("1111111");
     }
 
     @EventListener

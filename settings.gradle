@@ -10,4 +10,5 @@ include 'netty'
 include 'event'
 include 'graphql'
 include 'minio'
+include 'design-pattern'
 
