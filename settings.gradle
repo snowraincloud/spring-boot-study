@@ -11,4 +11,5 @@ include 'event'
 include 'graphql'
 include 'minio'
 include 'design-pattern'
+include 'reactive-permission'
 
