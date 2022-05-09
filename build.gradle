@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.5.3'
+    id 'org.springframework.boot' version '2.6.7'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
@@ -19,8 +19,6 @@ subprojects {
     apply plugin: "jacoco"
 
 
-
-
     group 'priv.wjh.study'
     version '1.0-SNAPSHOT'
 
@@ -28,7 +26,7 @@ subprojects {
         options.encoding = "UTF-8"
     }
 
-    sourceCompatibility = '11'
+    sourceCompatibility = '17'
 
     configurations {
         compileOnly {
