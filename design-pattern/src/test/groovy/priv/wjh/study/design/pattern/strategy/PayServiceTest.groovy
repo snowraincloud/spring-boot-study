@@ -7,7 +7,7 @@ import spock.lang.Specification
 @SpringBootTest
 class PayServiceTest extends Specification {
     @Autowired
-    PayService payService
+    IPay payService
 
     def "Pay"() {
         when:

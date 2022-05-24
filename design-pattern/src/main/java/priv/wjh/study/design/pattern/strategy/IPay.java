@@ -5,6 +5,6 @@ package priv.wjh.study.design.pattern.strategy;
  *
  * @author wangjunhao
  **/
-public interface IPayStrategy extends IPay{
-    PayEnum getType();
+public interface IPay {
+    void pay(PayEnum payEnum);
 }

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  * @author wangjunhao
  **/
 @Service
-public class PayService {
+public class PayService implements IPay{
     private final Map<PayEnum, IPayStrategy> payStrategy;
 
     public PayService(List<IPayStrategy> payStrategies) {
@@ -21,7 +21,8 @@ public class PayService {
                 .collect(Collectors.toMap(IPayStrategy::getType, Function.identity()));
     }
 
+    @Override
     public void pay(PayEnum payEnum){
-        this.payStrategy.get(payEnum).pay();
+        this.payStrategy.get(payEnum).pay(payEnum);
     }
 }

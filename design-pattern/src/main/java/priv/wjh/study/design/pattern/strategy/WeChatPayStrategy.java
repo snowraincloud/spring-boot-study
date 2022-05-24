@@ -1,6 +1,5 @@
 package priv.wjh.study.design.pattern.strategy;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class WeChatPayStrategy implements IPayStrategy{
 
     @Override
-    public void pay() {
+    public void pay(PayEnum payEnum) {
         System.out.println("We chat pay strategy");
     }
 

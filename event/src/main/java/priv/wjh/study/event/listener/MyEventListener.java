@@ -19,13 +19,13 @@ public class MyEventListener {
 
     @EventListener(condition = "#myEvent.type==T(priv.wjh.study.event.model.EventTypeEnums).START ||#myEvent.type==T(priv.wjh.study.event.model.EventTypeEnums).END")
     public void handlerStartAndEndEvent(MyEvent myEvent){
-        logger.info("HandlerStartAndEndEvent receive a event: {}", myEvent);
+        log.info("HandlerStartAndEndEvent receive a event: {}", myEvent);
         type = myEvent.getType();
         throw new RuntimeException("1111111");
     }
 
     @EventListener
     public void handlerEvent(MyEvent myEvent){
-        logger.info("HandlerEvent receive a event: {}", myEvent);
+        log.info("HandlerEvent receive a event: {}", myEvent);
     }
 }

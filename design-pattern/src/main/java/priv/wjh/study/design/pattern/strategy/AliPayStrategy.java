@@ -1,16 +1,16 @@
 package priv.wjh.study.design.pattern.strategy;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * //TODO
  *
  * @author wangjunhao
  **/
-@Service
+@Component
 public class AliPayStrategy implements IPayStrategy{
     @Override
-    public void pay() {
+    public void pay(PayEnum payEnum) {
         System.out.println("ALi pay strategy");
     }
 
