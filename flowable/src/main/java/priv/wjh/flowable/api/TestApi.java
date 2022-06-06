@@ -26,7 +26,7 @@ public class TestApi {
         var processDefinition = processDefinitionQuery
                 .processDefinitionKeyLike("%leave%")
                 .list();
-        logger.info(String.valueOf(processDefinition.size()));
+        log.info(String.valueOf(processDefinition.size()));
         return processDefinition.size();
     }
 }
