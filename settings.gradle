@@ -12,4 +12,6 @@ include 'graphql'
 include 'minio'
 include 'design-pattern'
 include 'reactive-permission'
+include 'permission-2.7'
+include 'security-2.7'
 

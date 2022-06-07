@@ -3,6 +3,7 @@ type Query {
     artifactRepositories : [ArtifactRepository]
     artifactRepository(id : ID!) : ArtifactRepository
     project(slug: ID!): Project
+    test: String
 }
 
 type ArtifactRepository {
