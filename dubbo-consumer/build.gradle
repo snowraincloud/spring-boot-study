@@ -1,0 +1,10 @@
+ext {
+    dubboVersion = '3.1.2'
+}
+
+
+dependencies {
+    implementation(project(":dubbo-api"))
+    implementation('org.apache.dubbo:dubbo:' + dubboVersion)
+    implementation('org.apache.dubbo:dubbo-dependencies-zookeeper:' + dubboVersion)
+}

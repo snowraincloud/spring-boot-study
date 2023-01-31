@@ -8,6 +8,7 @@ import priv.wjh.permission.infrastructure.enums.rsp.IRspEnum;
  *
  * @author wangjunhao
  **/
+
 public class MyAccessDeniedException extends AccessDeniedException {
     private final IRspEnum rspEnum;
     public MyAccessDeniedException(IRspEnum rspEnum) {

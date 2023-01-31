@@ -14,4 +14,8 @@ include 'design-pattern'
 include 'reactive-permission'
 include 'permission-2.7'
 include 'security-2.7'
+include 'dubbo-api'
+include 'dubbo-provider'
+include 'dubbo-consumer'
+include 'spring-life-ext'
 
