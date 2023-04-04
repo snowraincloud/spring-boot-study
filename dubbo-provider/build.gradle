@@ -2,7 +2,7 @@ apply plugin: 'application'
 
 
 ext {
-    dubboVersion = '3.1.2'
+    dubboVersion = '3.1.7'
 }
 applicationDefaultJvmArgs = ["-Ddubbo.network.interface.preferred='Intel(R) Ethernet Connection (14) I219-LM'"]
 

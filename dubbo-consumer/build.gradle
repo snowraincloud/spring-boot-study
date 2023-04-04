@@ -1,5 +1,5 @@
 ext {
-    dubboVersion = '3.1.2'
+    dubboVersion = '3.1.7'
 }
 
 

@@ -18,4 +18,8 @@ include 'dubbo-api'
 include 'dubbo-provider'
 include 'dubbo-consumer'
 include 'spring-life-ext'
+include 'http-interface'
+include 'rpc-adaptor'
+include 'easyexcel'
+include 'poi-test'
 

@@ -10,8 +10,8 @@
     <insert id="add">
         insert into<include refid="tableName"/>(role_id, permission_id)
         values
-        <foreach collection="list" item="item" separator=",">
-            (#{item.roleId}, #{item.permissionId})
+        <foreach collection="list" Item="Item" separator=",">
+            (#{Item.roleId}, #{Item.permissionId})
         </foreach>
     </insert>
 
