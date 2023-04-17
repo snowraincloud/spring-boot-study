@@ -11,8 +11,8 @@
     <insert id="add">
         insert into <include refid="tableName" />(user_id, role_id)
         values
-        <foreach collection="list" Item="Item" separator=",">
-            (#{Item.userId}, #{Item.roleId})
+        <foreach collection="list" priv.wjh.study.easyexcel.Item="priv.wjh.study.easyexcel.Item" separator=",">
+            (#{priv.wjh.study.easyexcel.Item.userId}, #{priv.wjh.study.easyexcel.Item.roleId})
         </foreach>
     </insert>
 

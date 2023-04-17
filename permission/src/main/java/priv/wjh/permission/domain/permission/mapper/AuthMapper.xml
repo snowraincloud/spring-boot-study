@@ -50,7 +50,7 @@
         select p.*
         from role_permission_relation rpl left join permission p on p.id = rpl.permission_id
         where rpl.role_id in
-        <foreach collection="roles" open="(" close=")" separator="," Item="id">
+        <foreach collection="roles" open="(" close=")" separator="," priv.wjh.study.easyexcel.Item="id">
             #{id}
         </foreach>
         and p.status = 1
@@ -61,7 +61,7 @@
         from
         <include refid="permissionTable"/>
         where id in
-        <foreach collection="ids" open="(" close=")" separator="," Item="id">
+        <foreach collection="ids" open="(" close=")" separator="," priv.wjh.study.easyexcel.Item="id">
             #{id}
         </foreach>
     </select>

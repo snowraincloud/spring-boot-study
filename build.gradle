@@ -10,7 +10,10 @@ allprojects {
         maven{ url 'https://maven.aliyun.com/nexus/content/groups/public/'}
         mavenCentral()
     }
+
 }
+
+
 
 subprojects {
     apply plugin: 'org.springframework.boot'
