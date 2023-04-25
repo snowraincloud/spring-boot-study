@@ -8,12 +8,18 @@ import java.util.concurrent.TimeUnit;
 
 public class DemoSocketServerHandler extends SimpleChannelInboundHandler<String> {
 
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("Client Address ====== " + ctx.channel().remoteAddress());
+    }
+
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-        System.out.println("Client Address ====== " + ctx.channel().remoteAddress());
-        ctx.channel().writeAndFlush("from server:" + UUID.randomUUID());
-        ctx.fireChannelActive();
-        TimeUnit.MILLISECONDS.sleep(500);
+//        System.out.println("Client Address ====== " + ctx.channel().remoteAddress());
+//        ctx.channel().writeAndFlush("from server:" + UUID.randomUUID() + ", port: " + ctx.channel().remoteAddress());
+//        ctx.fireChannelActive();
+//        TimeUnit.MILLISECONDS.sleep(500);
     }
 
     @Override
