@@ -1,0 +1,7 @@
+
+dependencies {
+    // https://mvnrepository.com/artifact/com.alipay.sdk/alipay-easysdk
+// https://mvnrepository.com/artifact/com.alipay.sdk/alipay-easysdk
+    implementation group: 'com.alipay.sdk', name: 'alipay-easysdk', version: '2.2.3'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}
