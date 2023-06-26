@@ -23,4 +23,5 @@ include 'rpc-adaptor'
 include 'easyexcel'
 include 'poi-test'
 include 'pay'
+include 'express'
 
